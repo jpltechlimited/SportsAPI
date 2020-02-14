@@ -21,3 +21,8 @@ set database.connectionstring=
 .env\Scripts\activate
 pip install -r requirements.txt
 ```
+## Project setup
+```
+django-admin.py startproject api .
+django-admin.py startapp sportsapi
+```
