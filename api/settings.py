@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = str(os.environ['security.key'])
+SECRET_KEY = str(os.getenv('SECURITY_KEY', 'Security Key not found'))
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -47,11 +47,11 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':  str(os.environ['database.engine']),
-        'NAME': str(os.environ['database.dbname']),
-        'HOST': str(os.environ['database.host']),
-        'USER': str(os.environ['database.user']),
-        'PASSWORD': str(os.environ['database.password'])
+        'ENGINE': str(os.getenv('DATABASE_ENGINE', 'Database engine not found')),
+        'NAME': str(os.getenv('DATABASE_DBNAME', 'Database name not found')),
+        'HOST': str(os.getenv('DATABASE_HOST', 'Database host not found')),
+        'USER': str(os.getenv('DATABASE_USER', 'Database user not found')),
+        'PASSWORD': str(os.getenv('DATABASE_PASSWORD', 'Database password not found')),
     }
 }
 

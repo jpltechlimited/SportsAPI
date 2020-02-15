@@ -16,15 +16,14 @@ pip install pipenv
 ```
 pipenv install
 ```
-## Set variables
+## Set variables in .env file
 ```
-edit .env\Scripts\activate script:
-set database.engine=
-set database.dbname=
-set database.host=
-set database.user=
-set database.password=
-set security.key=
+SECURITY_KEY=
+DATABASE_ENGINE=
+DATABASE_DBNAME=
+DATABASE_HOST=
+DATABASE_USER=
+DATABASE_PASSWORD=
 ```
 ## Activate virtual environment
 ```
