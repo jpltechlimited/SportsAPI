@@ -121,8 +121,8 @@ class DjangoSession(models.Model):
 class TennisMatch(models.Model):
     id = models.CharField(primary_key=True, max_length=50)
     day = models.DateTimeField(blank=True, null=True)
-    player1 = models.ForeignKey('TennisPlayer', models.DO_NOTHING)
-    player2 = models.ForeignKey('TennisPlayer', models.DO_NOTHING)
+    player1 = models.ForeignKey('TennisPlayer', models.DO_NOTHING, related_name='tennis_match_player1')
+    player2 = models.ForeignKey('TennisPlayer', models.DO_NOTHING, related_name='tennis_match_player2')
     event = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
     court_type = models.CharField(max_length=50, blank=True, null=True)
