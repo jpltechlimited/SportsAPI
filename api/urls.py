@@ -4,7 +4,7 @@ from rest_framework import routers
 from sportsapi import views
 
 router = routers.DefaultRouter()
-router.register('tennisplayers', views.TennisPlayerAPI)
+router.register('tennisplayers', views.TennisPlayerViewSet, basename='TennisPlayer')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls))
