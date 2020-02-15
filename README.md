@@ -28,5 +28,5 @@ django-admin.py startapp sportsapi
 ```
 ## Installation of MySQL Client 32-bits
 ```
-pip install .\whl\mysqlclient-1.4.6-cp38-cp38-win32.whl
+pip install .\whl\mysql\mysqlclient-1.4.6-cp38-cp38-win32.whl
 ```
