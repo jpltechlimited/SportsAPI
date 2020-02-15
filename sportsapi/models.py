@@ -8,66 +8,154 @@
 from django.db import models
 
 
-class Tennismatch(models.Model):
-    id = models.CharField(db_column='Id', primary_key=True, max_length=50)  # Field name made lowercase.
-    dayofyear = models.DateTimeField(db_column='DayOfYear', blank=True, null=True)  # Field name made lowercase.
-    player1id = models.ForeignKey('Tennisplayer', models.DO_NOTHING, db_column='Player1Id')  # Field name made lowercase.
-    player2id = models.ForeignKey('Tennisplayer', models.DO_NOTHING, db_column='Player2Id')  # Field name made lowercase.
-    event = models.CharField(db_column='Event', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    location = models.CharField(db_column='Location', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    courttype = models.CharField(db_column='CourtType', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    tournamentstage = models.CharField(db_column='TournamentStage', max_length=50, blank=True, null=True)  # Field name made lowercase.
+class AuthGroup(models.Model):
+    name = models.CharField(unique=True, max_length=80)
 
     class Meta:
         managed = False
-        db_table = 'TennisMatch'
+        db_table = 'auth_group'
 
 
-class Tennismatchpointbypoint(models.Model):
-    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    matchid = models.TextField(db_column='MatchId')  # Field name made lowercase.
-    stage = models.CharField(db_column='Stage', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    playeragames = models.IntegerField(db_column='PlayerAGames')  # Field name made lowercase.
-    playerbgames = models.IntegerField(db_column='PlayerBGames')  # Field name made lowercase.
-    playerapoint = models.CharField(db_column='PlayerAPoint', max_length=2, blank=True, null=True)  # Field name made lowercase.
-    playerbpoint = models.CharField(db_column='PlayerBPoint', max_length=2, blank=True, null=True)  # Field name made lowercase.
-    breakpoint = models.BooleanField(db_column='BreakPoint')  # Field name made lowercase.
-    setpoint = models.BooleanField(db_column='SetPoint')  # Field name made lowercase.
-    matchpoint = models.BooleanField(db_column='MatchPoint')  # Field name made lowercase.
-    playeraserving = models.BooleanField(db_column='PlayerAServing')  # Field name made lowercase.
-    playerbserving = models.BooleanField(db_column='PlayerBServing')  # Field name made lowercase.
+class AuthGroupPermissions(models.Model):
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'TennisMatchPointByPoint'
+        db_table = 'auth_group_permissions'
+        unique_together = (('group', 'permission'),)
 
 
-class Tennisplayer(models.Model):
-    id = models.CharField(db_column='Id', primary_key=True, max_length=50)  # Field name made lowercase.
-    fullname = models.CharField(db_column='Fullname', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    url = models.CharField(db_column='Url', max_length=100, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'TennisPlayer'
-
-
-class User(models.Model):
-    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    firstname = models.CharField(db_column='Firstname', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    lastname = models.CharField(db_column='Lastname', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    username = models.CharField(db_column='Username', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    password = models.CharField(db_column='Password', max_length=50, blank=True, null=True)  # Field name made lowercase.
+class AuthPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    codename = models.CharField(max_length=100)
 
     class Meta:
         managed = False
-        db_table = 'User'
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
 
 
-class Efmigrationshistory(models.Model):
-    migrationid = models.CharField(db_column='MigrationId', primary_key=True, max_length=150)  # Field name made lowercase.
-    productversion = models.CharField(db_column='ProductVersion', max_length=32)  # Field name made lowercase.
+class AuthUser(models.Model):
+    password = models.CharField(max_length=128)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_superuser = models.BooleanField()
+    username = models.CharField(unique=True, max_length=150)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=150)
+    email = models.CharField(max_length=254)
+    is_staff = models.BooleanField()
+    is_active = models.BooleanField()
+    date_joined = models.DateTimeField()
 
     class Meta:
         managed = False
-        db_table = '__EFMigrationsHistory'
+        db_table = 'auth_user'
+
+
+class AuthUserGroups(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_groups'
+        unique_together = (('user', 'group'),)
+
+
+class AuthUserUserPermissions(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_user_permissions'
+        unique_together = (('user', 'permission'),)
+
+
+class DjangoAdminLog(models.Model):
+    action_time = models.DateTimeField()
+    object_id = models.TextField(blank=True, null=True)
+    object_repr = models.CharField(max_length=200)
+    action_flag = models.SmallIntegerField()
+    change_message = models.TextField()
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'django_admin_log'
+
+
+class DjangoContentType(models.Model):
+    app_label = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
+
+
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
+
+
+class DjangoSession(models.Model):
+    session_key = models.CharField(primary_key=True, max_length=40)
+    session_data = models.TextField()
+    expire_date = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_session'
+
+
+class TennisMatch(models.Model):
+    id = models.CharField(primary_key=True, max_length=50)
+    day = models.DateTimeField(blank=True, null=True)
+    player1 = models.ForeignKey('TennisPlayer', models.DO_NOTHING)
+    player2 = models.ForeignKey('TennisPlayer', models.DO_NOTHING)
+    event = models.CharField(max_length=50, blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
+    court_type = models.CharField(max_length=50, blank=True, null=True)
+    tournament_stage = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tennis_match'
+
+
+class TennisMatchPointByPoint(models.Model):
+    match_id = models.TextField()
+    stage = models.CharField(max_length=50, blank=True, null=True)
+    player_a_games = models.IntegerField()
+    player_b_games = models.IntegerField()
+    player_a_point = models.CharField(max_length=2, blank=True, null=True)
+    player_b_point = models.CharField(max_length=2, blank=True, null=True)
+    break_point = models.BooleanField()
+    set_point = models.BooleanField()
+    match_point = models.BooleanField()
+    player_a_serving = models.BooleanField()
+    player_b_serving = models.BooleanField()
+
+    class Meta:
+        managed = False
+        db_table = 'tennis_match_point_by_point'
+
+
+class TennisPlayer(models.Model):
+    id = models.CharField(primary_key=True, max_length=50)
+    fullname = models.CharField(max_length=50, blank=True, null=True)
+    url = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tennis_player'
