@@ -18,19 +18,25 @@ pipenv install
 ```
 ## Set variables in .env file
 ```
-SECURITY_KEY=
 DATABASE_ENGINE=
 DATABASE_DBNAME=
 DATABASE_HOST=
 DATABASE_USER=
 DATABASE_PASSWORD=
+SECURITY_KEY=
 ```
 ## Activate virtual environment
 ```
 pipenv shell
 ```
-
-## Installation of MySQL Client 32-bits
+## Django first run
 ```
-pip install .\whl\mysql\mysqlclient-1.4.6-cp38-cp38-win32.whl
+manage.py migrate
+manage.py createsuperuser
+manage.py check
+manage.py runserver
+```
+## Models from existing tables
+```
+manage.py inspectdb > sportsapi\models.py
 ```
