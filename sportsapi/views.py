@@ -1,29 +1,16 @@
-from rest_framework import viewsets
+from django.http import Http404
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .serializers import *
 from .models import *
 
 
-class TennisPlayerViewSet(viewsets.ModelViewSet):
-    serializer_class = TennisPlayerSerializer
-    queryset = TennisPlayer.objects.all()
+class TennisPlayerAPIView(APIView):
+    tennis_players = TennisPlayer.objects
 
-    def retrieve(self, request, pk=None):
-        players = TennisPlayer.objects.all()
-        serializer = self.get_serializer(players, many=True)
-        return Response(serializer.data)
-
-    def list(self, request):
-        pass
-
-    def create(self, request):
-        pass
-
-    def update(self, request, pk=None):
-        pass
-
-    def partial_update(self, request, pk=None):
-        pass
-
-    def destroy(self, request, pk=None):
-        pass
+    def get_object(self, pk):
+        try:
+            return self.tennis_players.get(pk=pk)
+        except TennisPlayer.DoesNotExist:
+            raise Http404

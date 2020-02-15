@@ -1,11 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 from sportsapi import views
 
-router = routers.DefaultRouter()
-router.register('tennisplayers', views.TennisPlayerViewSet, basename='TennisPlayer')
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/tennisplayers/<int:pk>/', views.TennisPlayerAPIView.as_view())
 ]
