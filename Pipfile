@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 djangorestframework = "*"
 django-pyodbc-azure = "*"
+django-rest-swagger = "*"
 
 [requires]
 python_version = "3.8"
