@@ -14,7 +14,12 @@ virtualenv .env
 ## Set virtual environment variables
 ```
 edit .env\Scripts\activate script:
-set database.connectionstring=
+set database.engine=
+set database.dbname=
+set database.host=
+set database.user=
+set database.password=
+set security.key=
 ```
 ## Activate virtual environment and install requirements
 ```
