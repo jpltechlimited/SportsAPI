@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate
 from django.http import Http404
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.decorators import api_view, permission_classes
