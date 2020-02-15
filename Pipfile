@@ -13,6 +13,7 @@ pyyaml = "*"
 coreapi = "*"
 markdown = "*"
 pygments = "*"
+drf-yasg = "*"
 
 [requires]
 python_version = "3.8"

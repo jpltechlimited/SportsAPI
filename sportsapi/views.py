@@ -7,10 +7,6 @@ from .serializers import TennisPlayerSerializer
 
 class TennisPlayerAPIView(APIView):
     tennis_players = TennisPlayer.objects
-    """
-    get:
-        Return a player by Id.
-    """
 
     def get(self, request, pk):
         snippet = self.get_object(pk)
