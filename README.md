@@ -40,3 +40,8 @@ manage.py runserver
 ```
 manage.py inspectdb > sportsapi\models.py
 ```
+## Generate schema for Open API
+```
+manage.py generateschema > openapi-schema.yml
+```
+
