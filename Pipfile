@@ -10,6 +10,7 @@ django = "*"
 djangorestframework = "*"
 django-pyodbc-azure = "*"
 django-rest-swagger = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.8"
