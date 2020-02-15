@@ -3,15 +3,20 @@
 pip --version
 pip install --upgrade pip
 ```
-## Check and install virtualenv
+## Project setup
 ```
-pip install --user virtualenv
+django-admin.py startproject api .
+django-admin.py startapp sportsapi
 ```
-## Create virtual environment
+## Check and install virtual environment
 ```
-virtualenv .env
+pip install pipenv
 ```
-## Set virtual environment variables
+## Install dependencies from pipfile
+```
+pipenv install
+```
+## Set variables
 ```
 edit .env\Scripts\activate script:
 set database.engine=
@@ -21,16 +26,11 @@ set database.user=
 set database.password=
 set security.key=
 ```
-## Activate virtual environment and install requirements
+## Activate virtual environment
 ```
-.env\Scripts\activate
-pip install -r requirements.txt
+pipenv shell
 ```
-## Project setup
-```
-django-admin.py startproject api .
-django-admin.py startapp sportsapi
-```
+
 ## Installation of MySQL Client 32-bits
 ```
 pip install .\whl\mysql\mysqlclient-1.4.6-cp38-cp38-win32.whl
