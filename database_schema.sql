@@ -1,4 +1,4 @@
-/****** Object:  Database [SportApiDB]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Database [SportApiDB]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE DATABASE [SportApiDB]  (EDITION = 'Basic', SERVICE_OBJECTIVE = 'Basic', MAXSIZE = 2 GB) WITH CATALOG_COLLATION = SQL_Latin1_General_CP1_CI_AS;
 GO
 ALTER DATABASE [SportApiDB] SET ANSI_NULL_DEFAULT OFF 
@@ -41,7 +41,7 @@ ALTER DATABASE [SportApiDB] SET QUERY_STORE = ON
 GO
 ALTER DATABASE [SportApiDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 7), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 10, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO)
 GO
-/****** Object:  Table [dbo].[auth_group]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_group]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -59,7 +59,7 @@ UNIQUE NONCLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[auth_group_permissions]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_group_permissions]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -79,7 +79,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[auth_permission]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_permission]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,7 +100,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[auth_user]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_user]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +127,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[auth_user_groups]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_user_groups]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -147,7 +147,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[auth_user_user_permissions]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[auth_user_user_permissions]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +167,26 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[django_admin_log]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[authtoken_token]    Script Date: 15/02/2020 14:52:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[authtoken_token](
+	[key] [nvarchar](40) NOT NULL,
+	[created] [datetime2](7) NOT NULL,
+	[user_id] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[key] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[user_id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[django_admin_log]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -187,7 +206,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[django_content_type]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[django_content_type]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +226,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[django_migrations]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[django_migrations]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -223,7 +242,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[django_session]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[django_session]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -238,7 +257,7 @@ PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tennis_match]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[tennis_match]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -258,7 +277,7 @@ CREATE TABLE [dbo].[tennis_match](
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tennis_match_point_by_point]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[tennis_match_point_by_point]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,7 +301,7 @@ CREATE TABLE [dbo].[tennis_match_point_by_point](
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tennis_player]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Table [dbo].[tennis_player]    Script Date: 15/02/2020 14:52:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -297,61 +316,61 @@ CREATE TABLE [dbo].[tennis_player](
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_group_permissions_group_id_b120cbf9]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_group_permissions_group_id_b120cbf9]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_group_permissions_group_id_b120cbf9] ON [dbo].[auth_group_permissions]
 (
 	[group_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_group_permissions_permission_id_84c5c92e]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_group_permissions_permission_id_84c5c92e]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_group_permissions_permission_id_84c5c92e] ON [dbo].[auth_group_permissions]
 (
 	[permission_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_permission_content_type_id_2f476e4b]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_permission_content_type_id_2f476e4b]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_permission_content_type_id_2f476e4b] ON [dbo].[auth_permission]
 (
 	[content_type_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_user_groups_group_id_97559544]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_user_groups_group_id_97559544]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_user_groups_group_id_97559544] ON [dbo].[auth_user_groups]
 (
 	[group_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_user_groups_user_id_6a12ed8b]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_user_groups_user_id_6a12ed8b]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_user_groups_user_id_6a12ed8b] ON [dbo].[auth_user_groups]
 (
 	[user_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_user_user_permissions_permission_id_1fbb5f2c]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_user_user_permissions_permission_id_1fbb5f2c]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_user_user_permissions_permission_id_1fbb5f2c] ON [dbo].[auth_user_user_permissions]
 (
 	[permission_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [auth_user_user_permissions_user_id_a95ead1b]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [auth_user_user_permissions_user_id_a95ead1b]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [auth_user_user_permissions_user_id_a95ead1b] ON [dbo].[auth_user_user_permissions]
 (
 	[user_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [django_admin_log_content_type_id_c4bce8eb]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [django_admin_log_content_type_id_c4bce8eb]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [django_admin_log_content_type_id_c4bce8eb] ON [dbo].[django_admin_log]
 (
 	[content_type_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [django_admin_log_user_id_c564eba6]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [django_admin_log_user_id_c564eba6]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [django_admin_log_user_id_c564eba6] ON [dbo].[django_admin_log]
 (
 	[user_id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [django_session_expire_date_a5c62663]    Script Date: 15/02/2020 09:36:43 ******/
+/****** Object:  Index [django_session_expire_date_a5c62663]    Script Date: 15/02/2020 14:52:26 ******/
 CREATE NONCLUSTERED INDEX [django_session_expire_date_a5c62663] ON [dbo].[django_session]
 (
 	[expire_date] ASC
@@ -391,6 +410,11 @@ ALTER TABLE [dbo].[auth_user_user_permissions]  WITH CHECK ADD  CONSTRAINT [auth
 REFERENCES [dbo].[auth_user] ([id])
 GO
 ALTER TABLE [dbo].[auth_user_user_permissions] CHECK CONSTRAINT [auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id]
+GO
+ALTER TABLE [dbo].[authtoken_token]  WITH CHECK ADD  CONSTRAINT [authtoken_token_user_id_35299eff_fk_auth_user_id] FOREIGN KEY([user_id])
+REFERENCES [dbo].[auth_user] ([id])
+GO
+ALTER TABLE [dbo].[authtoken_token] CHECK CONSTRAINT [authtoken_token_user_id_35299eff_fk_auth_user_id]
 GO
 ALTER TABLE [dbo].[django_admin_log]  WITH CHECK ADD  CONSTRAINT [django_admin_log_content_type_id_c4bce8eb_fk_django_content_type_id] FOREIGN KEY([content_type_id])
 REFERENCES [dbo].[django_content_type] ([id])

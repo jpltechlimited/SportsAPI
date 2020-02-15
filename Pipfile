@@ -14,6 +14,7 @@ coreapi = "*"
 markdown = "*"
 pygments = "*"
 drf-yasg = "*"
+httpie = "*"
 
 [requires]
 python_version = "3.8"
