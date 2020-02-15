@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.urls import path, include
 from sportsapi import views
 
-
 urlpatterns = [
     url(r'^api/auth', include('rest_framework.urls', namespace='rest_framework')),
     path(r'admin/', admin.site.urls),
